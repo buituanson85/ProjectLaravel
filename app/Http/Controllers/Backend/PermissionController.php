@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
-    public function index(){
-        $permissions = Permission::paginate(10);
+    public function index(Request $request){
+
+        $name = $request->name;
+
+        if (isset($name)){
+            $permissions = Permission::where('name','like','%'.$name.'%')->paginate(6);
+        }else{
+            $permissions = Permission::orderBy('id', 'DESC')->paginate(6);
+        }
         return view('Backend.administration.permissions.index', compact('permissions'));
     }
 

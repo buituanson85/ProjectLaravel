@@ -1,19 +1,26 @@
 @extends('layouts.Backend.base')
 @section('title', 'Edit Permissions')
 @section('content')
-    <section style="padding: 30px 0;">
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="float-left">
-                    <li style="float: left;list-style: none"><a class="longin-a" href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                    <li style="float: left; margin: 0 10px;list-style: none">/</li>
-                    <li style="float: left;list-style: none"><a class="longin-a" href="{{ route('permissions.index') }}">Permissions</a></li>
-                    <li style="float: left; margin: 0 10px;list-style: none">/</li>
-                    <li style="float: left;list-style: none"><a class="longin-a" href="{{ route('permissions.index') }}">Edit Permissions</a></li>
-                </ul>
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+    @include('layouts.Backend.header')
+    <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title" style="margin-top: 10px">
+                        <span style="float: left">Dashboard</span>
+                        <span style="float: left;margin: 0 5px">/</span>
+                        <span style="float: left"><a href="{{ route('permissions.index') }}">Edit Permission</a></span>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="row pt-5">
+        </div>
+        <div class="breadcrumbs">
+            <div class="pt-5">
                 <div class="col-md-10 offset-md-1">
                     <div class="card card-primary">
                         <div class="card-header">
@@ -73,14 +80,14 @@
 
                                         @foreach($permissions as $permissionp)
                                             @if($permissionp->parent == 0)
-                                            <option
-                                                @if($permissionp->id === $permission->parent)
-                                                selected
-                                                @else
+                                                <option
+                                                    @if($permissionp->id === $permission->parent)
+                                                    selected
+                                                    @else
 
-                                                @endif
-                                                value="{{ $permissionp->id }}">{{ $permissionp->name }}
-                                            </option>
+                                                    @endif
+                                                    value="{{ $permissionp->id }}">{{ $permissionp->name }}
+                                                </option>
                                             @else
                                             @endif
                                         @endforeach
@@ -97,9 +104,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </section>
+
+
+    </div><!-- /#right-panel -->
+
 @endsection
 
 

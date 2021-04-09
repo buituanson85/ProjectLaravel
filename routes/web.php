@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleAddPermissionController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,15 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
     Route::resource('/dashboards/roles', RoleController::class);
     Route::resource('/dashboards/roles-permissions', RoleAddPermissionController::class);
 
+    //users
+    Route::resource('/dashboards/users',UserController::class);
+    Route::get('/dashboards/unlockutypeuser/{id}', [ UserController::class, 'unLockutypeUser'])->name('dashboards.unlockutypeuser');
+    Route::get('/dashboards/lockutypeuser/{id}', [ UserController::class, 'lockutypeUser'])->name('dashboards.lockutypeuser');
+    //profile
+    Route::get('/dashboards/profile', [ UserController::class, 'profile'])->name('dashboards.profile');
+    Route::post('/dashboards/profile', [ UserController::class,'editProfile'])->name('dashboards.updateprofile');
+
+    //password
+    Route::get('/dashboards/password/change', [ UserController::class,'getPassword'])->name('dashboards.getpassword');
+    Route::post('/dashboards/password/change', [ UserController::class,'editPassword'])->name('dashboards.editpassword');
 });
