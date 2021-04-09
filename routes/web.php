@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+Route::resource('/', HomeController::class);
+
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function (){
+//pages
+
+});
+
+//for admin
+Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
+    //Admin
+    Route::resource('/dashboard', DashboardController::class);
+
 });
