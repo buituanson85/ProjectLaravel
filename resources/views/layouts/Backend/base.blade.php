@@ -51,34 +51,25 @@
                 <li class="active">
                     <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
-                <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Admintratito</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Components</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Roles</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                        <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
-                        <li><i class="fa fa-share-square-o"></i><a href="ui-social-buttons.html">Social Buttons</a></li>
-                        <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                        <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                        <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                        <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                        <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                        <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                        <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                        <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('roles.create') }}">Create Roles</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ route('roles.index') }}">Table Roles</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Permissions</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                        <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                        <li><i class="fa fa-table"></i><a href="{{ route('permissions.create') }}">Create Permission</a></li>
+                        <li><i class="fa fa-table"></i><a href="{{ route('permissions.index') }}">Table Permission</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="{{ route('roles-permissions.index') }}">Basic Form</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                     </ul>
                 </li>
@@ -164,7 +155,42 @@
         });
     })(jQuery);
 </script>
+<script language="javascript">
+    function ChangeToSlug()
+    {
+        var name, slug;
 
+        //Lấy text từ thẻ input title
+        name = document.getElementById("name").value;
+
+        //Đổi chữ hoa thành chữ thường
+        slug = name.toLowerCase();
+
+        //Đổi ký tự có dấu thành không dấu
+        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+        slug = slug.replace(/đ/gi, 'd');
+        //Xóa các ký tự đặt biệt
+        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+        //Đổi khoảng trắng thành ký tự gạch ngang
+        slug = slug.replace(/ /gi, "-");
+        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+        slug = slug.replace(/\-\-\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-/gi, '-');
+        //Xóa các ký tự gạch ngang ở đầu và cuối
+        slug = '@' + slug + '@';
+        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+        //In slug ra textbox có id “slug”
+        document.getElementById('slug').value = slug;
+    }
+</script>
 </body>
 
 </html>

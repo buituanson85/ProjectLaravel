@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\RoleAddPermissionController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +35,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
 
 //for admin
 Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
-    //Admin
     Route::resource('/dashboard', DashboardController::class);
+    //Admin
+    Route::resource('/dashboards/permissions', PermissionController::class);
+    Route::resource('/dashboards/roles', RoleController::class);
+    Route::resource('/dashboards/roles-permissions', RoleAddPermissionController::class);
 
 });

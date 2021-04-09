@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Backend\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -17,6 +19,11 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
+
+    public function roles(){
+        return $this->belongsToMany(Role::class,'user_role');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +34,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'utype'
     ];
 
     /**
