@@ -29,12 +29,13 @@
                                 <a href="{{ route('roles.index') }}" class="btn btn-danger"><i class="fas fa-shield-alt"></i> See all Roles</a>
                             </div>
                         </div>
+                        <div class="alert-danger"></div>
                         <form method="POST" action="{{ route('roles.store') }}">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Roles Name</label>
-                                    <input type="text" onkeyup="ChangeToSlug()" name="name"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="Roles Name">
+                                    <input type="text" onkeyup="ChangeToSlug()" name="name"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Roles Name">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -44,7 +45,7 @@
 
                                 <div class="form-group">
                                     <label for="slug">Roles Slug</label>
-                                    <input type="text" name="slug"  id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" required placeholder="Roles Slug">
+                                    <input type="text" name="slug"  id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" placeholder="Roles Slug">
                                     @error('slug')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,7 +55,7 @@
 
                                 <div class="form-group">
                                     <label for="title">Roles Title</label>
-                                    <input type="text" name="title"  id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required placeholder="Roles Title">
+                                    <input type="text" name="title"  id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Roles Title">
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

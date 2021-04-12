@@ -53,4 +53,17 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
     //password
     Route::get('/dashboards/password/change', [ UserController::class,'getPassword'])->name('dashboards.getpassword');
     Route::post('/dashboards/password/change', [ UserController::class,'editPassword'])->name('dashboards.editpassword');
+
+    //SupperAdmin
+    Route::middleware(['auth:sanctum', 'verified','authsupperadmin'])->group(function (){
+
+    });
+    //Staff
+    Route::middleware(['auth:sanctum', 'verified','authstaff'])->group(function (){
+
+    });
+    //Support
+    Route::middleware(['auth:sanctum', 'verified','authsupport'])->group(function (){
+
+    });
 });

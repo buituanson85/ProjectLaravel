@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="breadcrumbs">
+            <div class="alert-danger"></div>
             <form class="form-horizontal" method="POST" action="{{ route('dashboards.updateprofile') }}" enctype="multipart/form-data">
                 @csrf
                 <section style="padding: 60px 20px;">
@@ -28,11 +29,11 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center pb-3">
-                                            <div class="image-preview2" id="imagePreview2">
-                                                <img class="image-preview__image2 img-fluid img-circle profile-user-img" style="width: 200px;" src="{{ asset('assets/uploads/users') }}/{{ Auth::user()->photo }}" id="img_thumbnail" alt="">
-                                                <span id="store_image2" class="image-preview__default-text2"></span>
+                                            <div class="image-preview" id="imagePreview">
+                                                <img class="image-preview__image img-fluid img-circle profile-user-img" style="width: 200px;" src="{{ asset('Backend/uploads/users') }}/{{ auth()->user()->profile_photo_path }}" id="img_thumbnail" alt="">
+                                                <span id="store_image" class="image-preview__default-text"></span>
                                             </div>
-                                            <input class="input-file pt-5" name="photo" id="photo" type="file">
+                                            <input class="input-file pt-5" name="image" id="image" type="file">
                                         </div>
                                     </div>
                                 </div>
@@ -51,11 +52,11 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="name">Name</label>
-                                                            <input type="text" name="name"  id="name" class="form-control @error('email') is-invalid @enderror" value="{{ auth()->user()->name }}" required placeholder="Name">
+                                                            <input type="text" name="name"  id="name" class="form-control @error('email') is-invalid @enderror" value="{{ auth()->user()->name }}" placeholder="Name">
                                                             @error('name')
                                                             <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
                                                             @enderror
                                                         </div>
 
@@ -64,18 +65,28 @@
                                                             <input type="email" name="email"  id="email" class="form-control @error('email') is-invalid @enderror" value="{{ auth()->user()->email }}" placeholder="E-mail Address">
                                                             @error('siteemail')
                                                             <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
                                                             @enderror
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="phone">Phone Number</label>
-                                                            <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone Number" value="{{ auth()->user()->phone }}" required>
+                                                            <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone Number" value="{{ auth()->user()->phone }}">
                                                             @error('phone')
                                                             <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="phone">Address</label>
+                                                            <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" placeholder="Address" value="{{ auth()->user()->address }}">
+                                                            @error('address')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
                                                             @enderror
                                                         </div>
                                                     </div>

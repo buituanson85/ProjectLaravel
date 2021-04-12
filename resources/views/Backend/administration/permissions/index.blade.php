@@ -104,7 +104,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                            {{ $permissions -> links('pagination::bootstrap-4') }}
+                            {!!   $permissions ->appends(['name' => $name]) -> links('pagination::bootstrap-4') !!}
                         </div>
                         <!-- /.card-body -->
                     </div>

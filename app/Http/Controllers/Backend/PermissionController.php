@@ -17,7 +17,7 @@ class PermissionController extends Controller
         }else{
             $permissions = Permission::orderBy('id', 'DESC')->paginate(6);
         }
-        return view('Backend.administration.permissions.index', compact('permissions'));
+        return view('Backend.administration.permissions.index', compact('name','permissions'));
     }
 
     public function create()

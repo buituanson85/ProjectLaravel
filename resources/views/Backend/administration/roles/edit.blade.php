@@ -29,37 +29,38 @@
                                 <a href="{{ route('roles.index') }}" class="btn btn-danger"><i class="fas fa-shield-alt"></i> See all Roles</a>
                             </div>
                         </div>
+                        <div class="alert-danger"></div>
                         <form method="POST" action="{{ route('roles.update', $role->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Roles Name</label>
-                                    <input type="text" name="name" onkeyup="ChangeToSlug()"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $role->name }}" required placeholder="Roles Name">
+                                    <input type="text" name="name" onkeyup="ChangeToSlug()"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $role->name }}" placeholder="Roles Name">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="slug">Roles Slug</label>
-                                    <input type="text" name="slug"  id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $role->slug }}" required>
+                                    <input type="text" name="slug"  id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $role->slug }}">
                                     @error('slug')
                                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="title">Roles Title</label>
-                                    <input type="text" name="title"  id="title" class="form-control @error('title') is-invalid @enderror" value="{{ $role->title }}" required>
+                                    <input type="text" name="title"  id="title" class="form-control @error('title') is-invalid @enderror" value="{{ $role->title }}">
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 

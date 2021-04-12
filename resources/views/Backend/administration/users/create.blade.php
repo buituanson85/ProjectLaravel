@@ -29,6 +29,7 @@
                                 <a href="{{ route('users.index') }}" class="btn btn-sm btn-danger"><i class="fas fa-shield-alt"></i> See all Users</a>
                             </div>
                         </div>
+                        <div class="alert-danger"></div>
                         <form class="form-group pt-3" method="POST" action="{{route('users.store')}}">
                             @csrf
                             <div class="card-body">
@@ -37,35 +38,72 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label pull-right">User Name:</label>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="User Name" id="name" name="name" class="form-control input-md">
+                                                <input type="text" name="name"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Enter Name">
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label pull-right">Email Address:</label>
                                             <div class="col-md-6">
-                                                <input type="email" placeholder="Email Address" id="email" name="email" class="form-control input-md">
+                                                <input type="email" name="email"  id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter Email">
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label pull-right">Phone Number</label>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Phone Number" id="phone" name="phone" class="form-control input-md">
+                                                <input type="text" name="phone"  id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="Enter Phone">
+                                                @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label pull-right">Address</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="address"  id="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" placeholder="Enter Address">
+                                                @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label pull-right">Password</label>
                                             <div class="col-md-6">
-                                                <input type="password" placeholder="Enter Password" id="password" name="password" class="form-control input-md">
+                                                <input type="password" name="password"  id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Enter Password">
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label pull-right">Confirm Password</label>
                                             <div class="col-md-6">
-                                                <input type="password" placeholder="Confirm Password" required autocomplete="new-password" id="password_confirmation" name="password_confirmation" class="form-control input-md">
+                                                <input type="password" name="password_confirmation"  id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}" placeholder="Confirm Password">
+                                                @error('password_confirmation')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
 

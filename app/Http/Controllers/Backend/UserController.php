@@ -35,6 +35,9 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|unique:users',
             'password' => 'required|alpha_num|min:6',
+            'password_confirmation' => 'required|alpha_num|min:6',
+            'phone' => 'required',
+            'address' => 'required',
             'email' => 'required|email|unique:users'
         ]);
         $user = new User();
@@ -42,6 +45,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
+        $user->address = $request->address;
         $user->password = bcrypt($request->password);
 //        $user->password_confirmation = bcrypt($request->password_confirmation);
         $user->save();
@@ -102,21 +106,23 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'phone' => 'required|alpha_num',
+            'address' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id
         ]);
 
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
+        $user->address = $request->address;
 
-        if ($request ->photo != null){
-            $images = $request->photo;
+        if ($request ->image != null){
+            $images = $request->image;
             $imageName = $images->getClientOriginalName();
             $imageName = time().".".$imageName;
             $image_resize = Image::make($images->getRealPath());
             $image_resize->resize(300,300);
             $image_resize->save(public_path('Backend/uploads/users/'.$imageName));
-            $request->photo->storeAs('products', $imageName);
+            $request->image->storeAs('products', $imageName);
             $user -> profile_photo_path = $imageName;
         }
         $user->save();

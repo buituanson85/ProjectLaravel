@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('Backend/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Backend/vendors/selectFX/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('Backend/vendors/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/css/slider_single_product.css') }}">
 
 
     <link rel="stylesheet" href="{{ asset('Backend/assets/css/style.css') }}">
@@ -69,6 +70,7 @@
 <script src="{{ asset('Backend/vendors/jqvmap/dist/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('Backend/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
 <script src="{{ asset('Backend/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+<script src="{{ asset('Backend/assets/js/slider_single_product.js') }}"></script>
 <script>
     (function($) {
         "use strict";

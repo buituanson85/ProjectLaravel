@@ -29,13 +29,14 @@
                                 <a href="{{ route('permissions.index') }}" class="btn btn-danger"><i class="fas fa-shield-alt"></i> See all Permission</a>
                             </div>
                         </div>
+                        <div class="alert-danger"></div>
                         <form method="POST" action="{{ route('permissions.update', $permission->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Permission Name</label>
-                                    <input type="text" onkeyup="ChangeToSlug()" name="name"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $permission->name }}" required placeholder="Permission Name">
+                                    <input type="text" onkeyup="ChangeToSlug()" name="name"  id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $permission->name }}" placeholder="Permission Name">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -55,7 +56,7 @@
 
                                 <div class="form-group">
                                     <label for="url">Permission URL</label>
-                                    <input type="text" name="url"  id="url" class="form-control @error('url') is-invalid @enderror" value="{{ $permission->url }}" required placeholder="Permission url">
+                                    <input type="text" name="url"  id="url" class="form-control @error('url') is-invalid @enderror" value="{{ $permission->url }}" placeholder="Permission url">
                                     @error('url')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -65,7 +66,7 @@
 
                                 <div class="form-group">
                                     <label for="icon">Permission Icon</label>
-                                    <input type="text" name="icon"  id="icon" class="form-control @error('icon') is-invalid @enderror" value="{{ $permission->icon }}" required placeholder="Permission Icon">
+                                    <input type="text" name="icon"  id="icon" class="form-control @error('icon') is-invalid @enderror" value="{{ $permission->icon }}" placeholder="Permission Icon">
                                     @error('icon')
                                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -75,7 +76,7 @@
 
                                 <div class="form-group">
                                     <label for="name">Permission Parent</label>
-                                    <select class="form-control" id="parent" name="parent" required data-parsley-trigger="keyup">
+                                    <select class="form-control" id="parent" name="parent">
                                         <option value="0">=== Permission Parent ===</option>
 
                                         @foreach($permissions as $permissionp)
