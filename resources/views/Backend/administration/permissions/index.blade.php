@@ -72,11 +72,16 @@
                                 </thead>
                                 <tbody>
                                 @php
-                                    $index = 0;
+                                    $index = $permissions->perPage()*($permissions->currentPage() - 1);
                                 @endphp
                                 @forelse ($permissions as $permission)
                                     <tr>
-                                        <td>{{ ++$index }}</td>
+                                        <td>
+                                            @php
+                                                $index++;
+                                            @endphp
+                                            {{ $index }}
+                                        </td>
                                         <td>{{ $permission->name }}</td>
                                         <td>{{ $permission->slug }}</td>
                                         <td>{{ $permission->url }}</td>
@@ -104,7 +109,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                            {!!   $permissions ->appends(['name' => $name]) -> links('pagination::bootstrap-4') !!}
+                            {!!   $permissions -> render('pagination::bootstrap-4') !!}
                         </div>
                         <!-- /.card-body -->
                     </div>

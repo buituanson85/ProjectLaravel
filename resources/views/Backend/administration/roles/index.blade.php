@@ -26,7 +26,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Roles Table</h3>
                             <div class="card-tools">
-                                <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-shield-alt"></i> Create new Role</a>
+                                <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create new Role</a>
                             </div>
                         </div>
                         <div class="card-body table-responsive p-0">
@@ -55,22 +55,22 @@
                                         <td>{{ $role->title }}</td>
                                         <td><span class="tag tag-success">{{ $role->created_at }}</span></td>
                                         <td>
-                                            {{--                                            @if($role->name === "Admin")--}}
+                                            @if($role->name === "Admin")
 
-                                            {{--                                            @else--}}
+                                            @else
                                             <a href="{{ route('roles.edit', $role->id) }}"><span class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</span></a>
-                                            {{--                                            @endif--}}
+                                            @endif
                                         </td>
                                         <td>
-                                            {{--                                            @if($role->name === "Admin")--}}
+                                            @if($role->name === "Admin")
 
-                                            {{--                                            @else--}}
+                                            @else
                                             <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;Delete</button>
                                             </form>
-                                            {{--                                            @endif--}}
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

@@ -50,27 +50,22 @@
                                                 <label>
                                                     {{ ucfirst($role->name) }}
                                                 </label>
-                                                <input type="checkbox" name="roles[]" value="{{ $role->id }}">
+                                                @if($role->name === "Admin")
+
+                                                @else
+                                                <input type="checkbox"
+                                                       @foreach($user->roles as $key)
+                                                            @if($key->name == $role->name)
+                                                                checked="checked"
+                                                            @else
+
+                                                            @endif
+                                                       @endforeach
+                                                       name="roles[]" value="{{ $role->id }}">
+                                                @endif
                                                 <br>
                                             </div>
-
                                         @endforeach
-{{--                                        @foreach ($roles as $role)--}}
-{{--                                        @foreach($user->roles as $roleu)--}}
-{{--                                            <div class="checkbox">--}}
-{{--                                                <label>--}}
-{{--                                                    {{ ucfirst($role->name) }}--}}
-{{--                                                </label>--}}
-{{--                                                @if($roleu->id == $role->id)--}}
-{{--                                                <input type="checkbox" checked name="roles[]" value="{{ $role->id }}">--}}
-{{--                                                @break--}}
-{{--                                                @endif--}}
-{{--                                                <input type="checkbox" name="roles[]" value="{{ $role->id }}">--}}
-{{--                                                @break--}}
-{{--                                                <br>--}}
-{{--                                            </div>--}}
-{{--                                        @endforeach--}}
-{{--                                        @endforeach--}}
                                     </div>
                                 </div>
                             </div>

@@ -113,7 +113,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <input type="submit" class="btn btn-sm btn-primary" value="Register" name="register">
+                                <button type="submit" class="btn btn-primary" name="register"><i class="fas fa-save"></i>&nbsp;Register</button>
                             </div>
                         </form>
                     </div>

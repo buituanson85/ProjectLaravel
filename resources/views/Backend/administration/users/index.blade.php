@@ -25,15 +25,31 @@
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="card-tools">
                                             <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create Users</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <form action="{{ route('users.index') }}" class="form-horizontal">
+                                            @csrf
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <select class="form-control" name="utype" id="utype">
+                                                                <option value="">===== Select UTYPE =====</option>
+                                                                <option
+                                                                    {{ $utype == "ADM" ? 'selected' : ''}}
+                                                                    value="ADM">ADM</option>
+                                                                <option
+                                                                    {{ $utype == "URS" ? 'selected' : ''}}
+                                                                    value="USR">USR</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
                                                             <div class="row">
@@ -70,15 +86,20 @@
                                     </thead>
                                     <tbody>
                                     @php
-                                    $index = 0;
+                                    $index = $users->perPage()*($users->currentPage() - 1);
                                     @endphp
                                     @foreach($users as $user)
                                         <tr>
-                                            <td>{{ ++$index }}</td>
+                                            <td>
+                                                @php
+                                                    $index++;
+                                                @endphp
+                                                {{ $index }}
+                                            </td>
                                             <td>{{ $user->name }}</td>
                                             <td>
                                                 @if( $user->utype == "ADM" )
-                                                @foreach($user->roles as $role)
+                                                @forelse($user->roles as $role)
                                                     @if($role->name == "Admin")
                                                         <span class="badge badge-success">ADM</span>
                                                         @break
@@ -86,7 +107,9 @@
                                                         <a class="badge badge-success" href=" {{ route('dashboards.unlockutypeuser',$user->id) }}">ADM</a>
                                                         @break
                                                     @endif
-                                                @endforeach
+                                                @empty
+                                                        <a class="badge badge-success" href=" {{ route('dashboards.unlockutypeuser',$user->id) }}">ADM</a>
+                                                @endforelse
                                                 @else
                                                     <a class="badge badge-warning" href="{{ route('dashboards.lockutypeuser',$user->id) }}">URS</a>
                                                 @endif
@@ -143,7 +166,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                {{ $users -> links('pagination::bootstrap-4') }}
+                                {!! $users->render('pagination::bootstrap-4') !!}
                             </div>
                         </div>
                     </div>

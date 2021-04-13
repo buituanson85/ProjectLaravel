@@ -14,6 +14,7 @@ class PermissionController extends Controller
 
         if (isset($name)){
             $permissions = Permission::where('name','like','%'.$name.'%')->paginate(6);
+            $permissions->appends($request->all());
         }else{
             $permissions = Permission::orderBy('id', 'DESC')->paginate(6);
         }

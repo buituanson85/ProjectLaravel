@@ -53,17 +53,21 @@
                                             @endforeach
                                         </td>
                                         <td><span class="tag tag-success">{{ $role->created_at }}</span></td>
-                                        <td><a href="{{ route('roles-permissions.show', $role->id) }}"><span class="btn btn-sm btn-info"><i class="fa fa-edit"></i>&nbsp;Add Role</span></a></td>
-                                        <td>
-                                            {{--                                            @if($role->name === "Admin")--}}
+                                        @if($role->name === "Admin")
 
-                                            {{--                                            @else--}}
+                                        @else
+                                        <td><a href="{{ route('roles-permissions.show', $role->id) }}"><span class="btn btn-sm btn-info"><i class="fa fa-edit"></i>&nbsp;Add Role</span></a></td>
+                                        @endif
+                                        <td>
+                                            @if($role->name === "Admin")
+
+                                            @else
                                             <form action="{{ route('roles-permissions.destroy', $role->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;Delete</button>
                                             </form>
-                                            {{--                                            @endif--}}
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

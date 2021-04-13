@@ -13,15 +13,24 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $name = $request->name;
+        $utype = $request->utype;
         $allRole = Role::all();
-        if (isset($name)){
-            $users = User::where('name', 'like','%'.$name.'%')->orWhere('email', 'LIKE', "%$name%")->with('roles')->paginate(5);
+
+        if (isset($name) && isset($utype)){
+            $users = User::where('name', 'like','%'.$name.'%')->where('utype', $utype)->paginate(5);
+            $users->appends($request->all());
+        }elseif (isset($name)){
+            $users = User::where('name','like','%'.$name.'%')->paginate(5);
+            $users->appends($request->all());
+        }elseif (isset($utype)){
+            $users = User::where('utype', $utype)->paginate(5);
+            $users->appends($request->all());
         }else{
-            $users = User::with('roles')->paginate(5);
+            $users = User::paginate(5);
         }
 
 //        $users = User::with('roles')->get();
-        return view('Backend.administration.users.index')->with(array('users'=>$users));
+        return view('Backend.administration.users.index')->with(array('users'=>$users, 'utype' => $utype));
 
     }
 
